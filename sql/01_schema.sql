@@ -44,3 +44,15 @@ CREATE TABLE ingredient (
     nom_ingredient VARCHAR(100) NOT NULL,
     CONSTRAINT uq_ingredient_nom UNIQUE (nom_ingredient)
 ) ENGINE = InnoDB;
+
+-- ---------------------------------------------------------------------------
+-- Création de la table Focaccia
+-- ---------------------------------------------------------------------------
+DROP TABLE IF EXISTS focaccia;
+CREATE TABLE focaccia (
+    id_focaccia INT PRIMARY KEY AUTO_INCREMENT,
+    nom_focaccia VARCHAR(100) NOT NULL,
+    prix DECIMAL(6,2) NOT NULL,
+    CONSTRAINT uq_focaccia_nom UNIQUE (nom_focaccia),
+    CONSTRAINT ck_focaccia_prix CHECK (prix > 0)
+) ENGINE = InnoDB;
