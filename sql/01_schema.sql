@@ -34,3 +34,13 @@ CREATE TABLE boisson (
     ON UPDATE CASCADE
     ON DELETE RESTRICT
 ) ENGINE = InnoDB;
+
+-- ---------------------------------------------------------------------------
+-- Création de la table ingrédient
+-- ---------------------------------------------------------------------------
+DROP TABLE IF EXISTS ingredient;
+CREATE TABLE ingredient (
+    id_ingredient INT PRIMARY KEY AUTO_INCREMENT,
+    nom_ingredient VARCHAR(100) NOT NULL,
+    CONSTRAINT uq_ingredient_nom UNIQUE (nom_ingredient)
+) ENGINE = InnoDB;
