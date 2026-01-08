@@ -24,3 +24,4 @@ Concevoir une base de données MySQL nommée `tifosi`, créer un utilisateur dé
 
 - 🔒 Les contraintes d’intégrité et champs obligatoires sont définis dans `01_schema.sql`.
 - ✅ Les requêtes de test et leurs commentaires sont regroupés dans `03_test_queries.sql`.
+- 🔑 **Mot de passe de l’utilisateur MySQL `tifosi` (tests locaux uniquement)** : `tifosi`
