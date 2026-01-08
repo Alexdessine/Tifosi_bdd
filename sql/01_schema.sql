@@ -42,6 +42,7 @@ DROP TABLE IF EXISTS ingredient;
 CREATE TABLE ingredient (
     id_ingredient INT PRIMARY KEY AUTO_INCREMENT,
     nom_ingredient VARCHAR(100) NOT NULL,
+    quantite INT NOT NULL,
     CONSTRAINT uq_ingredient_nom UNIQUE (nom_ingredient)
 ) ENGINE = InnoDB;
 
@@ -55,4 +56,21 @@ CREATE TABLE focaccia (
     prix DECIMAL(6,2) NOT NULL,
     CONSTRAINT uq_focaccia_nom UNIQUE (nom_focaccia),
     CONSTRAINT ck_focaccia_prix CHECK (prix > 0)
+) ENGINE = InnoDB;
+
+-- ---------------------------------------------------------------------------
+-- Création de la liaison Foccia <-> ingrédient (N:N)
+-- ---------------------------------------------------------------------------
+DROP TABLE IF EXISTS focaccia_ingredient;
+CREATE TABLE focaccia_ingredient (
+    id_focaccia INT NOT NULL,
+    id_ingredient INT NOT NULL,
+    quantite INT NOT NULL,
+    CONSTRAINT pk_focaccia_ingredient PRIMARY KEY (id_focaccia, id_ingredient),
+    CONSTRAINT fk_focaccia_ingredient_focaccia FOREIGN KEY (id_focaccia) REFERENCES focaccia(id_focaccia)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT,
+    CONSTRAINT fk_focaccia_ingredient_ingredient FOREIGN KEY (id_ingredient) REFERENCES ingredient(id_ingredient)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT
 ) ENGINE = InnoDB;
