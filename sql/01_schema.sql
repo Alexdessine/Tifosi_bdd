@@ -11,12 +11,24 @@
 USE tifosi;
 
 -- ---------------------------------------------------------------------------
+-- Création de la table client
+-- ---------------------------------------------------------------------------
+DROP TABLE IF EXISTS client;
+CREATE TABLE client (
+    id_client INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(50) NOT NULL,
+    email VARCHAT(150) NOT NULL, 
+    code_postal INT UNSIGNED NOT NULL,
+    CONSTRAINT uq_client_email UNIQUE (email)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+-- ---------------------------------------------------------------------------
 -- Création de la table marque
 -- ---------------------------------------------------------------------------
 DROP TABLE IF EXISTS marque;
 CREATE TABLE marque (
-    id_marque INT PRIMARY KEY AUTO_INCREMENT,
-    nom_marque VARCHAR(100) NOT NULL,
+    id_marque INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    nom_marque VARCHAR(50) NOT NULL,
     CONSTRAINT uq_marque_nom UNIQUE (nom_marque)
 ) ENGINE = InnoDB;
 
@@ -25,9 +37,9 @@ CREATE TABLE marque (
 -- ---------------------------------------------------------------------------
 DROP TABLE IF EXISTS boisson;
 CREATE TABLE boisson (
-    id_boisson INT PRIMARY KEY AUTO_INCREMENT,
-    nom_boisson VARCHAR(100) NOT NULL,
-    marque INT NOT NULL,
+    id_boisson INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    nom_boisson VARCHAR(50) NOT NULL,
+    marque INT UNSIGNED NOT NULL,
     CONSTRAINT uq_boisson_nom UNIQUE (nom_boisson),
     CONSTRAINT fk_boisson_marque 
     FOREIGN KEY (marque) REFERENCES marque(id_marque)
@@ -40,9 +52,8 @@ CREATE TABLE boisson (
 -- ---------------------------------------------------------------------------
 DROP TABLE IF EXISTS ingredient;
 CREATE TABLE ingredient (
-    id_ingredient INT PRIMARY KEY AUTO_INCREMENT,
-    nom_ingredient VARCHAR(100) NOT NULL,
-    quantite INT NOT NULL,
+    id_ingredient INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    nom_ingredient VARCHAR(50) NOT NULL,
     CONSTRAINT uq_ingredient_nom UNIQUE (nom_ingredient)
 ) ENGINE = InnoDB;
 
@@ -51,7 +62,7 @@ CREATE TABLE ingredient (
 -- ---------------------------------------------------------------------------
 DROP TABLE IF EXISTS focaccia;
 CREATE TABLE focaccia (
-    id_focaccia INT PRIMARY KEY AUTO_INCREMENT,
+    id_focaccia INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     nom_focaccia VARCHAR(100) NOT NULL,
     prix DECIMAL(6,2) NOT NULL,
     CONSTRAINT uq_focaccia_nom UNIQUE (nom_focaccia),
@@ -63,9 +74,9 @@ CREATE TABLE focaccia (
 -- ---------------------------------------------------------------------------
 DROP TABLE IF EXISTS focaccia_ingredient;
 CREATE TABLE focaccia_ingredient (
-    id_focaccia INT NOT NULL,
-    id_ingredient INT NOT NULL,
-    quantite INT NOT NULL,
+    id_focaccia INT UNSIGNED NOT NULL,
+    id_ingredient INT UNSIGNED NOT NULL,
+    quantite INT UNSIGNED NOT NULL,
     CONSTRAINT pk_focaccia_ingredient PRIMARY KEY (id_focaccia, id_ingredient),
     CONSTRAINT fk_focaccia_ingredient_focaccia FOREIGN KEY (id_focaccia) REFERENCES focaccia(id_focaccia)
     ON UPDATE CASCADE
