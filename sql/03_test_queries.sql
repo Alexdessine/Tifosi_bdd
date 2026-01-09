@@ -49,7 +49,7 @@ USE tifosi;
 -- Absence des accents
 --
 -- -----------------------------------------------------------------------------
-
+SELECT 'Requete #1 : Liste des focaccias par ordre alphabétique croissant' AS '';
 SELECT nom_focaccia FROM focaccia ORDER BY nom_focaccia ASC;
 
 -- ---------------------------------------------------------------------------
@@ -72,7 +72,7 @@ SELECT nom_focaccia FROM focaccia ORDER BY nom_focaccia ASC;
 -- Ecarts / commentaires :
 -- 
 -- ---------------------------------------------------------------------------
-
+SELECT 'Requete #2 : Nombre total d''ingrédients' AS '';
 SELECT COUNT(*) FROM ingredient;
 
 -- ---------------------------------------------------------------------------
@@ -96,6 +96,7 @@ SELECT COUNT(*) FROM ingredient;
 --   (à compléter si différence entre attendu et obtenu)
 -- ---------------------------------------------------------------------------
 
+SELECT 'Requete #3 : Prix moyen des focaccias' AS '';
 SELECT AVG(prix) FROM focaccia;
 
 -- ---------------------------------------------------------------------------
@@ -130,6 +131,7 @@ SELECT AVG(prix) FROM focaccia;
 --   Manque les accents, à corriger
 -- ---------------------------------------------------------------------------
 
+SELECT 'Requete #4 : Liste des boissons avec leur marque, triée par nom de boisson' AS '';
 SELECT nom_boisson, b.nom_marque FROM boisson JOIN marque b ON boisson.id_marque = b.id_marque ORDER BY nom_boisson ASC;
 
 -- ---------------------------------------------------------------------------
@@ -173,6 +175,7 @@ SELECT nom_boisson, b.nom_marque FROM boisson JOIN marque b ON boisson.id_marque
 --   La requête SQL est correcte, l’écart provient des données de test.
 -- ---------------------------------------------------------------------------
 
+SELECT 'Requete #5 : Liste des ingrédients pour une Raclaccia' AS '';
 SELECT nom_ingredient FROM ingredient 
 JOIN focaccia_ingredient ON ingredient.id_ingredient = focaccia_ingredient.id_ingredient 
 JOIN focaccia ON focaccia.id_focaccia = focaccia_ingredient.id_focaccia WHERE focaccia.nom_focaccia = 'Raclaccia';
@@ -206,6 +209,8 @@ JOIN focaccia ON focaccia.id_focaccia = focaccia_ingredient.id_focaccia WHERE fo
 --   L'affichage problématique des accents est dû à un problème d'encodage des caractères accentués
 --   lors de l'affichage dans le terminal.
 -- ---------------------------------------------------------------------------
+
+SELECT 'Requete #6 : Nom et nombre d''ingrédients pour chaque focaccia' AS '';
 SELECT focaccia.nom_focaccia, COUNT(ingredient.id_ingredient) AS nombre_ingredients FROM focaccia 
 JOIN focaccia_ingredient ON focaccia.id_focaccia = focaccia_ingredient.id_focaccia 
 JOIN ingredient ON ingredient.id_ingredient = focaccia_ingredient.id_ingredient 
@@ -233,6 +238,8 @@ GROUP BY focaccia.nom_focaccia;
 -- Écarts / commentaires :
 --   Aucun écart fonctionnel entre le résultat attendu et le résultat obtenu
 -- ---------------------------------------------------------------------------
+
+SELECT 'Requete #7 : Nom de la focaccia qui a le plus d''ingrédients' AS '';
 SELECT f.nom_focaccia FROM focaccia f
 JOIN focaccia_ingredient fi ON fi.id_focaccia = f.id_focaccia
 GROUP BY f.id_focaccia, f.nom_focaccia
@@ -270,6 +277,8 @@ FROM (
 -- Écarts / commentaires :
 --   Aucun écart fonctionnel entre le résultat attendu et le résultat obtenu
 -- --------------------------------------------------------------------------
+
+SELECT 'Requete #8 : Liste des focaccias qui contiennent de l''ail' AS '';
 SELECT DISTINCT focaccia.nom_focaccia FROM focaccia 
 JOIN focaccia_ingredient ON focaccia.id_focaccia = focaccia_ingredient.id_focaccia
 JOIN ingredient ON focaccia_ingredient.id_ingredient = ingredient.id_ingredient
@@ -299,6 +308,8 @@ WHERE ingredient.nom_ingredient = 'Ail';
 -- Écarts / commentaires :
 --   Aucun écart constaté entre le résultat attendu et le résultat obtenu
 -- ---------------------------------------------------------------------------
+
+SELECT 'Requete #9 : Liste des ingrédients inutilisés' AS '';
 SELECT ingredient.nom_ingredient FROM ingredient 
 LEFT JOIN focaccia_ingredient ON ingredient.id_ingredient = focaccia_ingredient.id_ingredient 
 WHERE focaccia_ingredient.id_ingredient IS NULL;
@@ -328,6 +339,8 @@ WHERE focaccia_ingredient.id_ingredient IS NULL;
 --   L'affichage problématique des accents est dû à un problème d'encodage des caractères accentués
 --   lors de l'affichage dans le terminal.
 -- ---------------------------------------------------------------------------
+
+SELECT 'Requete #10 : Liste des focaccias qui n''ont pas de champignons' AS '';
 SELECT f.nom_focaccia FROM focaccia f
 WHERE NOT EXISTS (SELECT 1 FROM focaccia_ingredient fi
     JOIN ingredient i ON i.id_ingredient = fi.id_ingredient
