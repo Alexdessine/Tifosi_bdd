@@ -196,3 +196,32 @@ SELECT focaccia.nom_focaccia, COUNT(ingredient.id_ingredient) AS nombre_ingredie
 JOIN focaccia_ingredient ON focaccia.id_focaccia = focaccia_ingredient.id_focaccia 
 JOIN ingredient ON ingredient.id_ingredient = focaccia_ingredient.id_ingredient 
 GROUP BY focaccia.nom_focaccia;
+
+-- ---------------------------------------------------------------------------
+-- Requête 8 : Liste des focaccias qui contiennent de l'ail
+-- ---------------------------------------------------------------------------
+-- But :
+--   Afficher la liste des focaccias contenant l’ingrédient "Ail".
+--
+-- SQL :
+--   Jointure entre les tables focaccia et ingredient, 
+--   Exclure les focaccias qui ne contiennent pas d'ail
+-- ---------------------------------------------------------------------------
+-- Résultat attendu :
+--   Une liste de focaccias dont la liaison contient l’ingrédient "Ail".
+--   Soit (Mozaccia, Gorgonzollaccia, Raclaccia et Paysanne)
+--
+-- Résultat obtenu :
+--   nom_focaccia
+--   Mozaccia
+--   Gorgonzollaccia
+--   Raclaccia
+--   Paysanne
+--
+-- Écarts / commentaires :
+--   Aucun écart fonctionnel entre le résultat attendu et le résultat obtenu
+-- --------------------------------------------------------------------------
+SELECT DISTINCT focaccia.nom_focaccia FROM focaccia 
+JOIN focaccia_ingredient ON focaccia.id_focaccia = focaccia_ingredient.id_focaccia
+JOIN ingredient ON focaccia_ingredient.id_ingredient = ingredient.id_ingredient
+WHERE ingredient.nom_ingredient = 'Ail';
