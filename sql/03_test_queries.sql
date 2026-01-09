@@ -104,19 +104,61 @@ SELECT AVG(prix) FROM focaccia;
 --   Afficher la liste des boissons avec leur marque associée, triée par nom de boisson.
 --
 -- SQL :
---   (à compléter)
+--   Récupérer le nom de la marque depuis le table marque avec JOIN marque On id_marque
 -- ---------------------------------------------------------------------------
 -- Résultat attendu :
 --   Deux colonnes (boisson + marque), triées par nom de boisson (ASC).
 --
 -- Résultat obtenu :
---   (à compléter après exécution)
+--   nom_boisson                    nom_marque
+--   Capri-sun                      Coca-Cola
+--   Coca-Cola original             Coca-Cola
+--   Coca-Cola z├®ro                Coca-Cola
+--   Eau de source                  Cristalline
+--   Fanta citron                   Coca-Cola
+--   Fanta orange                   Coca-Cola
+--   Lipton Peach                   Pepsico
+--   Lipton z├®ro citron            Pepsico
+--   Monster energy ultra blue      Monster
+--   Monster energy ultra gold      Monster
+--   Pepsi                          Pepsico
+--   Pepsi Max Z├®ro                Pepsico
+
+--
+-- Écarts / commentaires :
+--   Manque les accents, à corriger
+-- ---------------------------------------------------------------------------
+
+SELECT nom_boisson, b.nom_marque FROM boisson JOIN marque b ON boisson.id_marque = b.id_marque ORDER BY nom_boisson ASC;
+
+-- ---------------------------------------------------------------------------
+-- Requête 5 : Liste des ingrédients pour une Raclaccia
+-- ---------------------------------------------------------------------------
+-- But :
+--   Afficher la liste des ingrédients utilisés dans la focaccia nommée "Raclaccia".
+--
+-- SQL :
+--   (à compléter)
+-- ---------------------------------------------------------------------------
+-- Résultat attendu :
+--   La liste des ingrédients associés à "Raclaccia" (via la table de liaison).
+--   (Base tomate, raclette, cresson, ail, champignon, parmesan, poivre)
+--
+-- Résultat obtenu :
+--   nom_ingredient
+-- Ail
+-- Base Tomate
+-- Champignon
+-- Cresson
+-- Gorgonzola
+-- Olive noire
+-- Parmesan
+-- Poivre
 --
 -- Écarts / commentaires :
 --   (à compléter si différence entre attendu et obtenu)
 -- ---------------------------------------------------------------------------
 
-SELECT nom_boisson, b.nom_marque FROM boisson 
-JOIN marque b ON boisson.id_marque = b.id_marque ORDER BY nom_boisson ASC;
-
-
+SELECT nom_ingredient FROM ingredient 
+JOIN focaccia_ingredient ON ingredient.id_ingredient = focaccia_ingredient.id_ingredient 
+JOIN focaccia ON focaccia.id_focaccia = focaccia_ingredient.id_focaccia WHERE focaccia.nom_focaccia = 'Raclaccia';
