@@ -198,6 +198,41 @@ JOIN ingredient ON ingredient.id_ingredient = focaccia_ingredient.id_ingredient
 GROUP BY focaccia.nom_focaccia;
 
 -- ---------------------------------------------------------------------------
+-- Requête 7 : Nom de la focaccia qui a le plus d'ingrédients
+-- ---------------------------------------------------------------------------
+-- But :
+--   Identifier la focaccia qui possède le plus grand nombre d’ingrédients.
+--
+-- SQL :
+--   Jointure entre les tables focaccia et focaccia_ingredient
+--   Création d'une sous-requête qui compte le nombre d'ingrédients par focaccia
+--   Récupération du nombre maximum d'ingrédient pour chaque focaccia
+-- ---------------------------------------------------------------------------
+-- Résultat attendu :
+--   Une seule focaccia (ou plusieurs en cas d’égalité) avec le maximum d’ingrédients.
+--      Paysanne (12)
+--
+-- Résultat obtenu :
+--   (à compléter après exécution)
+--
+-- Écarts / commentaires :
+--   (à compléter si différence entre attendu et obtenu)
+-- ---------------------------------------------------------------------------
+SELECT f.nom_focaccia
+FROM focaccia f
+JOIN focaccia_ingredient fi ON fi.id_focaccia = f.id_focaccia
+GROUP BY f.id_focaccia, f.nom_focaccia
+HAVING COUNT(*) = (
+SELECT MAX(nb_ingredients)
+FROM (
+    SELECT COUNT(*) AS nb_ingredients
+    FROM focaccia_ingredient
+    GROUP BY id_focaccia
+    ) t
+);
+
+
+-- ---------------------------------------------------------------------------
 -- Requête 8 : Liste des focaccias qui contiennent de l'ail
 -- ---------------------------------------------------------------------------
 -- But :
