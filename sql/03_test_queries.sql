@@ -96,3 +96,27 @@ SELECT COUNT(*) FROM ingredient;
 -- ---------------------------------------------------------------------------
 
 SELECT AVG(prix) FROM focaccia;
+
+-- ---------------------------------------------------------------------------
+-- Requête 4 : Liste des boissons avec leur marque, triée par nom de boisson
+-- ---------------------------------------------------------------------------
+-- But :
+--   Afficher la liste des boissons avec leur marque associée, triée par nom de boisson.
+--
+-- SQL :
+--   (à compléter)
+-- ---------------------------------------------------------------------------
+-- Résultat attendu :
+--   Deux colonnes (boisson + marque), triées par nom de boisson (ASC).
+--
+-- Résultat obtenu :
+--   (à compléter après exécution)
+--
+-- Écarts / commentaires :
+--   (à compléter si différence entre attendu et obtenu)
+-- ---------------------------------------------------------------------------
+
+SELECT nom_boisson, b.nom_marque FROM boisson 
+JOIN marque b ON boisson.id_marque = b.id_marque ORDER BY nom_boisson ASC;
+
+
