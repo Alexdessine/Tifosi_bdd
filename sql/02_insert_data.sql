@@ -77,11 +77,25 @@ INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (23, 'Salami');
 INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (24, 'Tomate cerise');
 INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (25, 'Mozarella');
 
+-- -----------------------------------------------------------------------------
+-- Insertion des focaccias
+-- Source : focaccia.xlsx
+-- -----------------------------------------------------------------------------
+INSERT INTO focaccia (id_focaccia, nom_focaccia, prix) VALUES (1, 'Mozaccia', 9.80);
+INSERT INTO focaccia (id_focaccia, nom_focaccia, prix) VALUES (2, 'Gorgonzollaccia', 10.80);
+INSERT INTO focaccia (id_focaccia, nom_focaccia, prix) VALUES (3, 'Raclaccia', 8.90);
+INSERT INTO focaccia (id_focaccia, nom_focaccia, prix) VALUES (4, 'Emmentalaccia', 9.80);
+INSERT INTO focaccia (id_focaccia, nom_focaccia, prix) VALUES (5, 'Tradizione', 8.90);
+INSERT INTO focaccia (id_focaccia, nom_focaccia, prix) VALUES (6, 'Hawaienne', 11.20);
+INSERT INTO focaccia (id_focaccia, nom_focaccia, prix) VALUES (7, 'Américaine', 10.80);
+INSERT INTO focaccia (id_focaccia, nom_focaccia, prix) VALUES (8, 'Paysanne', 12.80);
+
 -- COMMIT;
 
 SELECT * FROM marque;
 SELECT * FROM boisson;
 SELECT * FROM ingredient;
+SELECT * FROM focaccia;
 
 --
 
