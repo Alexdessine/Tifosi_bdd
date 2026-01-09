@@ -162,3 +162,37 @@ SELECT nom_boisson, b.nom_marque FROM boisson JOIN marque b ON boisson.id_marque
 SELECT nom_ingredient FROM ingredient 
 JOIN focaccia_ingredient ON ingredient.id_ingredient = focaccia_ingredient.id_ingredient 
 JOIN focaccia ON focaccia.id_focaccia = focaccia_ingredient.id_focaccia WHERE focaccia.nom_focaccia = 'Raclaccia';
+
+-- ---------------------------------------------------------------------------
+-- Requête 6 : Nom et nombre d'ingrédients pour chaque focaccia
+-- ---------------------------------------------------------------------------
+-- But :
+--   Afficher, pour chaque focaccia, son nom et le nombre total d’ingrédients associés.
+--
+-- SQL :
+--   jointure entre les tables focaccia, focaccia_ingredient et ingredient,
+--   Avec un comptage du nombre d'ingrédients par focaccia
+-- ---------------------------------------------------------------------------
+-- Résultat attendu :
+--   Une ligne par focaccia : (nom_focaccia, nombre_ingredients).
+--
+-- Résultat obtenu :
+--   nom_focaccia    nombre_ingredients
+--   Am├®ricaine     8
+--   Emmentalaccia   7
+--   Gorgonzollaccia 8
+--   Hawaienne       9
+--   Mozaccia        10
+--   Paysanne        12
+--   Raclaccia       8
+--   Tradizione      9
+--
+-- Écarts / commentaires :
+--   Aucun écart fonctionnel entre le résultat attendu et le résultat obtenu
+--   L'affichage problématique des accents est dû à un problème d'encodage des caractères accentués
+--   lors de l'affichage dans le terminal.
+-- ---------------------------------------------------------------------------
+SELECT focaccia.nom_focaccia, COUNT(ingredient.id_ingredient) AS nombre_ingredients FROM focaccia 
+JOIN focaccia_ingredient ON focaccia.id_focaccia = focaccia_ingredient.id_focaccia 
+JOIN ingredient ON ingredient.id_ingredient = focaccia_ingredient.id_ingredient 
+GROUP BY focaccia.nom_focaccia;
