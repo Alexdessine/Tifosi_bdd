@@ -47,4 +47,42 @@ INSERT INTO boisson (id_boisson, nom_boisson, id_marque) VALUES (10, 'Monster en
 INSERT INTO boisson (id_boisson, nom_boisson, id_marque) VALUES (11, 'Monster energy ultra blue', 3);
 INSERT INTO boisson (id_boisson, nom_boisson, id_marque) VALUES (12, 'Eau de source', 2);
 
-COMMIT;
+-- -----------------------------------------------------------------------------
+-- Insertion des ingrédients
+-- source : ingredients.xlsx
+-- -----------------------------------------------------------------------------
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (1, 'Ail');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (2, 'Ananas');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (3, 'Artichaut');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (4, 'Bacon');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (5, 'Base Tomate');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (6, 'Base crème');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (7, 'Champignon');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (8, 'Chèvre');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (9, 'Cresson');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (10, 'Emmental');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (11, 'Gorgonzola');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (12, 'Jambon cuit');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (13, 'Jambon fumé');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (14, 'Oeuf');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (15, 'Oignon');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (16, 'Olive noire');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (17, 'Olive verte');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (18, 'Parmesan');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (19, 'Piment');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (20, 'Poivre');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (21, 'Pomme de terre');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (22, 'Raclette');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (23, 'Salami');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (24, 'Tomate cerise');
+INSERT INTO ingredient (id_ingredient, nom_ingredient) VALUES (25, 'Mozarella');
+
+-- COMMIT;
+
+SELECT * FROM marque;
+SELECT * FROM boisson;
+SELECT * FROM ingredient;
+
+--
+
+ROLLBACK;
