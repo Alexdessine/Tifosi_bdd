@@ -120,7 +120,7 @@ INSERT INTO focaccia_ingredient (id_focaccia, id_ingredient, quantite) VALUES
 (2, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Poivre'), 1),
 (2, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Olive noire'), 20),
 (3, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Base Tomate'), 200),
-(3, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Gorgonzola'), 50),
+(3, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Raclette'), 50),
 (3, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Cresson'), 20),
 (3, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Ail'), 2),
 (3, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Champignon'), 40),
