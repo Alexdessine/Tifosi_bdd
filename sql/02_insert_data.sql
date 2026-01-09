@@ -173,6 +173,4 @@ INSERT INTO focaccia_ingredient (id_focaccia, id_ingredient, quantite) VALUES
 (8, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Olive noire'), 20),
 (8, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Oeuf'), 50);
 
-
-
 COMMIT;
