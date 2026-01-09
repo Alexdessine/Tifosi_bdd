@@ -90,12 +90,56 @@ INSERT INTO focaccia (id_focaccia, nom_focaccia, prix) VALUES (6, 'Hawaienne', 1
 INSERT INTO focaccia (id_focaccia, nom_focaccia, prix) VALUES (7, 'Américaine', 10.80);
 INSERT INTO focaccia (id_focaccia, nom_focaccia, prix) VALUES (8, 'Paysanne', 12.80);
 
+-- -----------------------------------------------------------------------------
+-- Liaison focaccia <-> ingredient (N:N) + quantité
+-- Source : focaccia.xlsx (colonne "ingrédients")
+--
+-- Règles : 
+--  - une ligne par couple (focaccia, ingredient)
+--  - quantité : 
+--      * valeur entre parenthèse si présente
+--      * sinon valeur par défaut définie dans le fichier
+-- -----------------------------------------------------------------------------
+INSERT INTO focaccia_ingredient (id_focaccia, id_ingredient, quantite) VALUES 
+(1, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Base Tomate'), 200),
+(1, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Mozarella'), 50),
+(1, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Cresson'), 20),
+(1, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Jambon fumé'), 80),
+(1, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Ail'), 2),
+(1, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Artichaut'), 20),
+(1, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Champignon'), 40),
+(1, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Parmesan'), 50),
+(1, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Poivre'), 1),
+(1, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Olive noire'), 20),
+(2, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Base Tomate'), 200),
+(2, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Gorgonzola'), 50),
+(2, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Cresson'), 20),
+(2, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Ail'), 2),
+(2, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Champignon'), 40),
+(2, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Parmesan'), 50),
+(2, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Poivre'), 1),
+(2, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Olive noire'), 20);
+
+
+
 -- COMMIT;
 
 SELECT * FROM marque;
 SELECT * FROM boisson;
 SELECT * FROM ingredient;
 SELECT * FROM focaccia;
+SELECT f.nom_focaccia, i.nom_ingredient, fi.quantite
+FROM focaccia_ingredient fi
+    JOIN focaccia f ON f.id_focaccia = fi.id_focaccia
+    JOIN ingredient i ON i.id_ingredient = fi.id_ingredient
+WHERE f.id_focaccia = 1
+ORDER BY i.nom_ingredient;
+SELECT f.nom_focaccia, i.nom_ingredient, fi.quantite
+FROM focaccia_ingredient fi
+    JOIN focaccia f ON f.id_focaccia = fi.id_focaccia
+    JOIN ingredient i ON i.id_ingredient = fi.id_ingredient
+WHERE f.id_focaccia = 2
+ORDER BY i.nom_ingredient;
 
 --
 
