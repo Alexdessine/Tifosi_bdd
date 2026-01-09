@@ -151,7 +151,15 @@ INSERT INTO focaccia_ingredient (id_focaccia, id_ingredient, quantite) VALUES
 (6, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Piment'), 2),
 (6, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Parmesan'), 50),
 (6, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Poivre'), 1),
-(6, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Olive noire'), 20);
+(6, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Olive noire'), 20),
+(7, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Base Tomate'), 200),
+(7, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Mozarella'), 50),
+(7, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Cresson'), 20),
+(7, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Bacon'), 80),
+(7, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Pomme de terre'), 40),
+(7, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Parmesan'), 50),
+(7, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Poivre'), 1),
+(7, (SELECT id_ingredient FROM ingredient WHERE nom_ingredient = 'Olive noire'), 20);
 
 
 
@@ -196,6 +204,12 @@ FROM focaccia_ingredient fi
     JOIN focaccia f ON f.id_focaccia = fi.id_focaccia
     JOIN ingredient i ON i.id_ingredient = fi.id_ingredient
 WHERE f.id_focaccia = 6
+ORDER BY i.nom_ingredient;
+SELECT f.nom_focaccia, i.nom_ingredient, fi.quantite
+FROM focaccia_ingredient fi
+    JOIN focaccia f ON f.id_focaccia = fi.id_focaccia
+    JOIN ingredient i ON i.id_ingredient = fi.id_ingredient
+WHERE f.id_focaccia = 7
 ORDER BY i.nom_ingredient;
 
 --
