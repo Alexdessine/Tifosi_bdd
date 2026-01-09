@@ -20,6 +20,50 @@ Concevoir une base de données MySQL nommée `tifosi`, créer un utilisateur dé
 3. ▶️ Lancer `02_insert_data.sql`
 4. ▶️ Lancer `03_test_queries.sql`
 
+---
+
+## 📥 Préparation de l’import des données (.xlsx)
+
+Les fichiers `.xlsx` fournis servent de **sources de données** pour alimenter la base `tifosi`.
+Avant l'insertion en base, certaines données nécessitent une **transformation** afin de respecter le modèle relationnel.
+
+### Fichiers sources et tables cibles
+
+|       Fichier      | Tables concernés                                |
+| ------------------ | ----------------------------------------------- |
+| `ingredients.xlsx` | `ingredients`                                   |
+| `marque.xlsx`      | `marque`                                        |
+| `boisson.xlsx`     | `boisson`                                       |
+| `focaccia.xlsx`    | `focaccia`, `ingredient`, `focaccia_ingredient` |
+
+---
+
+### Règles de transformation principales
+
+- Les colonnes relationnelles simples (identifiants, nom, prix) snt insérées telles quelles.
+- Les listes d'ingrédients présentes dans `focaccia.xlsx` sont tranformées en relations **N:N** via la table `focaccia_ingredient`.
+- Les quantités associées aux ingrédients : 
+  - sont définies par défau dans le fichier,
+  - peuvent être surchargées lorsqu'une valeur est indiquée entre parenthèses (ex. `champignon(80)`),
+- Les quantités sont stockées exclusivement dans la table liaison `focaccia_ingredient`.
+
+---
+
+### Ordre d'insertion des données
+
+Afin de respecter les contraintes de clés étrangères, les données doivent être insérées dans l'ordre suivant:
+
+1. `marque`
+2. `boisson`
+3. `ingredient`
+4. `focaccia`
+5. `focaccia_ingredient`
+6. `menu`
+7. `menu_boisson`
+8. `menu_achat`
+
+---
+
 ## 📝 Notes
 
 - 🔒 Les contraintes d’intégrité et champs obligatoires sont définis dans `01_schema.sql`.
