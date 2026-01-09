@@ -26,7 +26,8 @@ USE tifosi;
 --  Afficher la liste des noms des focaccias triée par ordre alphabétique (ASC)
 -- 
 -- SQL : 
---  SELECT * FROM focaccia ORDER BY nom_focaccia ORDER BY ASC
+--  Selectionner la colonne nom_focaccia de la table focaccia
+--  avec un tri par ordre croissant (ASC)
 -- -----------------------------------------------------------------------------
 -- Résultat attentu : 
 --  Une colonne contenant les noms des focaccias, triés de A à Z.
@@ -58,7 +59,7 @@ SELECT nom_focaccia FROM focaccia ORDER BY nom_focaccia ASC;
 --   Afficher le nombre total d’ingrédients présents dans la table `ingredient`.
 --
 -- SQL :
---   SELECT COUNT(*) FROM ingredient
+--   Sélectionner le nombre total de lignes dans la table `ingredient` avec COUNT(*)
 -- ---------------------------------------------------------------------------
 -- Résultat attendu :
 --   Un entier correspondant au nombre total de lignes dans `ingredient`. (25)
@@ -138,7 +139,8 @@ SELECT nom_boisson, b.nom_marque FROM boisson JOIN marque b ON boisson.id_marque
 --   Afficher la liste des ingrédients utilisés dans la focaccia nommée "Raclaccia".
 --
 -- SQL :
---   (à compléter)
+--   Jointure entre les tables ingredient, focaccia_ingredient et focaccia,
+--   avec filtrage sur le nom de la focaccia "Raclaccia" pour afficher les ingrédients associés
 -- ---------------------------------------------------------------------------
 -- Résultat attendu :
 --   La liste des ingrédients associés à "Raclaccia" (via la table de liaison).
@@ -156,7 +158,19 @@ SELECT nom_boisson, b.nom_marque FROM boisson JOIN marque b ON boisson.id_marque
 -- Poivre
 --
 -- Écarts / commentaires :
---   (à compléter si différence entre attendu et obtenu)
+--   Le résultat obtenu ne correspond pas exactement au résultat attendu.
+--   Selon le fichier source (focaccia.xlsx), la focaccia "Raclaccia" devrait
+--   contenir les ingrédients suivants :
+--   Base tomate, raclette, cresson, ail, champignon, parmesan, poivre.
+--
+--   Or, le résultat obtenu contient les ingrédients "Gorgonzola" et "Olive noire"
+--   à la place de "Raclette", et ne correspond donc pas à la composition attendue.
+--
+--   Cet écart indique soit :
+--   - une erreur lors de l’insertion des données dans la table focaccia_ingredient,
+--   - soit une incohérence entre les données insérées et le fichier source.
+--
+--   La requête SQL est correcte, l’écart provient des données de test.
 -- ---------------------------------------------------------------------------
 
 SELECT nom_ingredient FROM ingredient 
@@ -219,8 +233,7 @@ GROUP BY focaccia.nom_focaccia;
 -- Écarts / commentaires :
 --   Aucun écart fonctionnel entre le résultat attendu et le résultat obtenu
 -- ---------------------------------------------------------------------------
-SELECT f.nom_focaccia
-FROM focaccia f
+SELECT f.nom_focaccia FROM focaccia f
 JOIN focaccia_ingredient fi ON fi.id_focaccia = f.id_focaccia
 GROUP BY f.id_focaccia, f.nom_focaccia
 HAVING COUNT(*) = (
@@ -289,3 +302,34 @@ WHERE ingredient.nom_ingredient = 'Ail';
 SELECT ingredient.nom_ingredient FROM ingredient 
 LEFT JOIN focaccia_ingredient ON ingredient.id_ingredient = focaccia_ingredient.id_ingredient 
 WHERE focaccia_ingredient.id_ingredient IS NULL;
+
+
+-- ---------------------------------------------------------------------------
+-- Requête 10 : Liste des focaccias qui n'ont pas de champignons
+-- ---------------------------------------------------------------------------
+-- But :
+--   Afficher la liste des focaccias ne contenant pas l’ingrédient "Champignon".
+--
+-- SQL :
+--   Sélection des focaccias pour lesquelles il n'existe aucune ligne dans la table 
+--   de liaison avec l'ingrédient "Champignon"
+-- ---------------------------------------------------------------------------
+-- Résultat attendu :
+--   Une liste de focaccias dont la composition ne contient pas "Champignon".
+--   (Américaine, hawaienne)
+--
+-- Résultat obtenu :
+--   nom_focaccia
+--   Am├®ricaine
+--   Hawaienne
+--
+-- Écarts / commentaires :
+--   Aucun écart fonctionnel entre le résultat attendu et le résultat obtenu
+--   L'affichage problématique des accents est dû à un problème d'encodage des caractères accentués
+--   lors de l'affichage dans le terminal.
+-- ---------------------------------------------------------------------------
+SELECT f.nom_focaccia FROM focaccia f
+WHERE NOT EXISTS (SELECT 1 FROM focaccia_ingredient fi
+    JOIN ingredient i ON i.id_ingredient = fi.id_ingredient
+    WHERE fi.id_focaccia = f.id_focaccia AND i.nom_ingredient = 'Champignon'
+);
