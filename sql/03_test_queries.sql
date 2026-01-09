@@ -213,10 +213,11 @@ GROUP BY focaccia.nom_focaccia;
 --      Paysanne (12)
 --
 -- Résultat obtenu :
---   (à compléter après exécution)
+--   nom_focaccia
+--   Paysanne
 --
 -- Écarts / commentaires :
---   (à compléter si différence entre attendu et obtenu)
+--   Aucun écart fonctionnel entre le résultat attendu et le résultat obtenu
 -- ---------------------------------------------------------------------------
 SELECT f.nom_focaccia
 FROM focaccia f
@@ -260,3 +261,29 @@ SELECT DISTINCT focaccia.nom_focaccia FROM focaccia
 JOIN focaccia_ingredient ON focaccia.id_focaccia = focaccia_ingredient.id_focaccia
 JOIN ingredient ON focaccia_ingredient.id_ingredient = ingredient.id_ingredient
 WHERE ingredient.nom_ingredient = 'Ail';
+
+-- ---------------------------------------------------------------------------
+-- Requête 9 : Liste des ingrédients inutilisés
+-- ---------------------------------------------------------------------------
+-- But :
+--   Afficher la liste des ingrédients présents dans `ingredient` mais non utilisés
+--   dans `focaccia_ingredient`.
+--
+-- SQL :
+--   (à compléter)
+-- ---------------------------------------------------------------------------
+-- Résultat attendu :
+--   Une liste d’ingrédients dont aucun enregistrement n’existe dans la table de liaison.
+--    ingrédients jamais utilisé (Salami, tomate cerise)
+--
+-- Résultat obtenu :
+--   nom_ingredient
+--   Salami
+--   Tomate cerise
+--
+-- Écarts / commentaires :
+--   Aucun écart constaté entre le résultat attendu et le résultat obtenu
+-- ---------------------------------------------------------------------------
+SELECT ingredient.nom_ingredient FROM ingredient 
+LEFT JOIN focaccia_ingredient ON ingredient.id_ingredient = focaccia_ingredient.id_ingredient 
+WHERE focaccia_ingredient.id_ingredient IS NULL;
