@@ -75,7 +75,7 @@ Ce script :
 ### 5️⃣ Exécution des requêtes de test
 
 ```bash
-mysql -u tifosi -p --default-character-set=utf8mb4 < 03_test_queries.sql
+mysql -u tifosi -p --default-character-set=utf8mb4 -t < 03_test_queries.sql
 ```
 
 Options utilisées :
