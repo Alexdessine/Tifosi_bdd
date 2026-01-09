@@ -18,6 +18,21 @@
 
 USE tifosi;
 
+SET NAMES utf8mb4;
+
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE focaccia_ingredient;
+TRUNCATE TABLE menu_boisson;
+TRUNCATE TABLE menu_achat;
+TRUNCATE TABLE menu;
+TRUNCATE TABLE boisson;
+TRUNCATE TABLE focaccia;
+TRUNCATE TABLE ingredient;
+TRUNCATE TABLE client;
+TRUNCATE TABLE marque;
+SET FOREIGN_KEY_CHECKS = 1;
+
+
 START TRANSACTION;
 
 -- -----------------------------------------------------------------------------
