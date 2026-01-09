@@ -1,0 +1,52 @@
+-- =============================================================================
+-- 03_test_queries.sql
+-- Objectif : 
+--  - Regrouper les 10 requêtes de vérification demandées dans le brief.
+--
+-- Pour chaque requête, ce fichier contient : 
+--  - Le numéro et le but de la requête
+--  - Le code SQL
+--  - Le résultat attendu
+--  - Le résultat obtenu
+--  - Un commentaire en cas d'écart
+--
+-- Remarque :
+--  Ce script doit être exécuté après :
+--      1) 00_init.sql
+--      2) 01_schema.sql
+--      3) 02_insert_data.sql
+-- =============================================================================
+
+USE tifosi;
+
+-- -----------------------------------------------------------------------------
+-- Requête #1 : Liste les noms des focaccias par ordre alphabétique croissant
+-- -----------------------------------------------------------------------------
+-- But : 
+--  Afficher la liste des noms des focaccias triée par ordre alphabétique (ASC)
+-- 
+-- SQL : 
+--  SELECT * FROM focaccia ORDER BY nom_focaccia ORDER BY ASC
+-- -----------------------------------------------------------------------------
+-- Résultat attentu : 
+--  Une colonne contenant les noms des focaccias, triés de A à Z.
+--
+-- Résultat obtenu :
+-- 
+-- nom_focaccia
+-- Am├®ricaine
+-- Emmentalaccia
+-- Gorgonzollaccia
+-- Hawaienne
+-- Mozaccia
+-- Paysanne
+-- Raclaccia
+-- Tradizione
+--  
+-- Ecarts / commentaires : 
+-- 
+-- Absence des accents
+--
+-- -----------------------------------------------------------------------------
+
+SELECT nom_focaccia FROM focaccia ORDER BY nom_focaccia ASC;
