@@ -58,10 +58,10 @@ SELECT nom_focaccia FROM focaccia ORDER BY nom_focaccia ASC;
 --   Afficher le nombre total d’ingrédients présents dans la table `ingredient`.
 --
 -- SQL :
---   (à compléter)
+--   SELECT COUNT(*) FROM ingredient
 -- ---------------------------------------------------------------------------
 -- Résultat attendu :
---   Un entier correspondant au nombre total de lignes dans `ingredient`.
+--   Un entier correspondant au nombre total de lignes dans `ingredient`. (25)
 -- 
 -- Résultat obtenu :
 --   
@@ -73,3 +73,26 @@ SELECT nom_focaccia FROM focaccia ORDER BY nom_focaccia ASC;
 -- ---------------------------------------------------------------------------
 
 SELECT COUNT(*) FROM ingredient;
+
+-- ---------------------------------------------------------------------------
+-- Requête 3 : Prix moyen des focaccias
+-- ---------------------------------------------------------------------------
+-- But :
+--   Calculer et afficher le prix moyen des focaccias.
+--
+-- SQL :
+--   Utilisation de la requête AVG
+--   SELECT AVG(prix) FROM focaccia
+-- ---------------------------------------------------------------------------
+-- Résultat attendu :
+--   Une valeur décimale correspondant à la moyenne des prix de `focaccia`.
+--
+-- Résultat obtenu :
+--   AVG(prix)
+--   10.375000
+--
+-- Écarts / commentaires :
+--   (à compléter si différence entre attendu et obtenu)
+-- ---------------------------------------------------------------------------
+
+SELECT AVG(prix) FROM focaccia;
