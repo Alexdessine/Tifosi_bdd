@@ -270,7 +270,9 @@ WHERE ingredient.nom_ingredient = 'Ail';
 --   dans `focaccia_ingredient`.
 --
 -- SQL :
---   (à compléter)
+--   jointure des tables focaccia et ingredient_focaccia
+--   récupération de la liste des ingrédients
+--   requete IS NULL pour récupérer les ingrédients jamais utilisés
 -- ---------------------------------------------------------------------------
 -- Résultat attendu :
 --   Une liste d’ingrédients dont aucun enregistrement n’existe dans la table de liaison.
