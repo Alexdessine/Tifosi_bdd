@@ -50,3 +50,26 @@ USE tifosi;
 -- -----------------------------------------------------------------------------
 
 SELECT nom_focaccia FROM focaccia ORDER BY nom_focaccia ASC;
+
+-- ---------------------------------------------------------------------------
+-- Requête 2 : Nombre total d'ingrédients
+-- ---------------------------------------------------------------------------
+-- But :
+--   Afficher le nombre total d’ingrédients présents dans la table `ingredient`.
+--
+-- SQL :
+--   (à compléter)
+-- ---------------------------------------------------------------------------
+-- Résultat attendu :
+--   Un entier correspondant au nombre total de lignes dans `ingredient`.
+-- 
+-- Résultat obtenu :
+--   
+--  COUNT(*)
+--  25
+-- 
+-- Ecarts / commentaires :
+-- 
+-- ---------------------------------------------------------------------------
+
+SELECT COUNT(*) FROM ingredient;
